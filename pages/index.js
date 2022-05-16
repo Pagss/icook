@@ -1,31 +1,32 @@
-import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
+import Head from "next/head";
+import clientPromise from "../lib/mongodb";
+import Link from "next/link";
 
 export default function Home({ isConnected }) {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>iCook</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
-        </h1>
+        <h1 className="title">iCook</h1>
 
         {isConnected ? (
           <h2 className="subtitle">You are connected to MongoDB</h2>
         ) : (
           <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
+            You are NOT connected to MongoDB. Check the <code>README.md</code>{" "}
             for instructions.
           </h2>
         )}
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        <div className="container">
+          <Link href="/novareceita">
+            <a>Criar Receita</a>
+          </Link>
+        </div>
 
         <div className="grid">
           <a href="https://nextjs.org/docs" className="card">
@@ -64,7 +65,7 @@ export default function Home({ isConnected }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
         </a>
       </footer>
@@ -219,12 +220,12 @@ export default function Home({ isConnected }) {
         }
       `}</style>
     </div>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
   try {
-    await clientPromise
+    await clientPromise;
     // `await clientPromise` will use the default database passed in the MONGODB_URI
     // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
     //
@@ -236,11 +237,11 @@ export async function getServerSideProps(context) {
 
     return {
       props: { isConnected: true },
-    }
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
     return {
       props: { isConnected: false },
-    }
+    };
   }
 }
