@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useRef } from "react";
 
-export default function RecipePart() {
+export default function RecipeDos() {
   const [count, setCount] = useState(0);
-  const [listaDeIngrediente, setListaDeIngrediente] = useState([]);
+  const [listaDeDirecoes, setListaDeDirecoes] = useState([]);
   const form = useRef(null);
 
   function handleClick() {
@@ -14,13 +14,11 @@ export default function RecipePart() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
-      ing: event.target.ing.value,
-      qtd: event.target.qtd.value,
-      metrica: event.target.metrica.value,
+      modos: event.target.modos.value,
     };
 
     const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/partform";
+    const endpoint = "/api/modosform";
 
     const options = {
       method: "POST",
@@ -38,36 +36,29 @@ export default function RecipePart() {
     console.log(result.data);
 
     if (result.data != null)
-      setListaDeIngrediente([...listaDeIngrediente, result.data]);
-    console.log(listaDeIngrediente);
+      setListaDeDirecoes([...listaDeDirecoes, result.data]);
+    console.log(listaDeDirecoes);
     form.current.remove();
   };
 
   return (
     <div>
-      <h2>Ingredientes</h2>
+      <h2>Modo de Fazer</h2>
 
       <div>
-        <ul>
-          {listaDeIngrediente.map((a, index) => {
+        <ol>
+          {listaDeDirecoes.map((a, index) => {
             return <li key={a}>{a}</li>;
           })}
-        </ul>
+        </ol>
       </div>
-      <button onClick={handleClick}>Adicionar ingrediente</button>
-      <div id="listinha">
+      <button onClick={handleClick}>Adicionar Instruções</button>
+      <div>
         {Array.from(Array(count)).map((c, index) => {
           return (
             <form key={c} ref={form} onSubmit={handleSubmit}>
-              <label htmlFor="ing"></label>
-              <input id="ing" name="ing" type="text"></input>;
-              <input id="qtd" type="number" min="0"></input>
-              <select id="metrica">
-                <option value="unidades">unidades</option>
-                <option value="g">g</option>
-                <option value="ml">ml</option>
-                <option value="xícaras">xícaras</option>
-              </select>
+              <label htmlFor="modos"></label>
+              <input id="modos" name="modos" type="text"></input>;
               <button type="submit">Adicionar</button>
             </form>
           );
