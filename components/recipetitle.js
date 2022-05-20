@@ -6,7 +6,7 @@ export default function RecipeTitle() {
 
   const form = useRef(null);
 
-  const handleSubmit = async (event) => {
+  const handleTitleSubmit = async (event) => {
     event.preventDefault();
     const data = {
       titulo: event.target.titulo.value,
@@ -39,7 +39,7 @@ export default function RecipeTitle() {
     <div>
       <div>{title}</div>
       <div>
-        <form ref={form} onSubmit={handleSubmit}>
+        <form ref={form} onSubmit={handleTitleSubmit}>
           <label htmlFor="titulo"></label>
           <input
             id="titulo"

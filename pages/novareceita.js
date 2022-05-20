@@ -5,12 +5,23 @@ import RecipeTitle from "../components/recipetitle";
 export default function NovaReceita(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = {
-      listinha: event.target.listinha.value,
+    const dataTit = {
+      titulo: event.target.titulo.value,
     };
 
-    const JSONdata = JSON.stringify(data);
+    const dataIng = {
+      ing: event.target.ing.value,
+      qtd: event.target.qtd.value,
+      metrica: event.target.metrica.value,
+    };
 
+    const dataMod = {
+      modos: event.target.modos.value,
+    };
+
+    const JSONdataTit = JSON.stringify(dataTit);
+    const JSONdataIng = JSON.stringify(dataIng);
+    const JSONdataMod = JSON.stringify(dataMod);
     const endpoint = "/api/recipebook";
 
     const options = {
@@ -20,14 +31,14 @@ export default function NovaReceita(props) {
         "Content-Type": "application/json",
       },
 
-      body: JSONdata,
+      body: { JSONdataTit, JSONdataIng, JSONdataMod },
     };
 
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
 
-    console.log(result.data);
+    console.log(response.json);
   };
 
   return (
@@ -43,7 +54,7 @@ export default function NovaReceita(props) {
         <RecipeDos />
       </h4>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <button type="submit">Anotar Receita</button>
         </form>
       </div>
