@@ -6,7 +6,7 @@ export default function NavBar() {
       <Link href="/">
         <a>Home</a>
       </Link>
-      <Link href="/tentativa">
+      <Link href="/novareceita">
         <a>Criar Receita</a>
       </Link>
     </nav>
