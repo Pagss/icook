@@ -199,11 +199,13 @@ export default function Home({ isConnected }) {
   }
   return (
     <>
-      <h1 className="title">iCook</h1>
-      <div className="card">
-        Seja um Chef
-        <br />
-        <button onClick={() => signIn()}>Sign in</button>
+      <main>
+        <h1 className="title">iCook</h1>
+        <div className="card">
+          Seja um Chef
+          <br />
+          <button onClick={() => signIn()}>Sign in</button>
+        </div>
         <style jsx>{`
           .container {
             min-height: 100vh;
@@ -352,7 +354,7 @@ export default function Home({ isConnected }) {
             box-sizing: border-box;
           }
         `}</style>
-      </div>
+      </main>
     </>
   );
 }
