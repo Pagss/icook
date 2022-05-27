@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useRef } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Tentativa() {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const formTit = useRef(null);
   const formIng = useRef(null);
@@ -150,8 +152,7 @@ export default function Tentativa() {
     const result = await response.json();
     console.log(result.data);
 
-    console.log(chef);
-    console.log(newRecipe);
+    router.push("/");
   };
   //Ate aqui
 

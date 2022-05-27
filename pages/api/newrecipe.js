@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
     db.collection("users").updateOne(
       { email: chef },
-      { $set: { recipe: newRecipe } }
+      { $push: { recipes: newRecipe } }
     );
 
     res.status(200).json({ data: "Receita Anotada" });
