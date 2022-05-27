@@ -6,7 +6,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Home({ isConnected }) {
   const { data: session, status } = useSession();
+
   if (session) {
+    console.log(session.user.email);
     return (
       <div className="container">
         <LoginBtn />

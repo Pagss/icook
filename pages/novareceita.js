@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useRef } from "react";
-import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function Tentativa() {
-  const [title, setTitle] = useState("Título da Receita");
+  const { data: session, status } = useSession();
 
   const formTit = useRef(null);
   const formIng = useRef(null);
   const formMod = useRef(null);
+
+  const [title, setTitle] = useState("Título da Receita");
 
   const handleTitleSubmit = async (event) => {
     event.preventDefault();
@@ -120,7 +122,36 @@ export default function Tentativa() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log({ recipe: [title, listaDeIngrediente, listaDeDirecoes] });
+
+    const chef = session.user.email;
+
+    const newRecipe = {
+      title: title,
+      ingredientes: listaDeIngrediente,
+      modo: listaDeDirecoes,
+    };
+
+    const data = { chef: chef, recipe: newRecipe };
+    const JSONdata = JSON.stringify(data);
+    const endpoint = "/api/newrecipe";
+
+    const options = {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSONdata,
+    };
+
+    const response = await fetch(endpoint, options);
+
+    const result = await response.json();
+    console.log(result.data);
+
+    console.log(chef);
+    console.log(newRecipe);
   };
   //Ate aqui
 
@@ -165,6 +196,7 @@ export default function Tentativa() {
                   <option value="g">g</option>
                   <option value="ml">ml</option>
                   <option value="xícaras">xícaras</option>
+                  <option value="colheres">colheres</option>
                 </select>
                 <button type="submit">Adicionar</button>
               </form>
