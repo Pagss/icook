@@ -1,8 +1,11 @@
 import Head from "next/head";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import { useSession } from "next-auth/react";
 
 export default function Layout({ children }) {
+  const { data: session, status } = useSession();
+
   return (
     <div>
       <Head>

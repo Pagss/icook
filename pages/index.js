@@ -34,6 +34,11 @@ export default function Home({ isConnected }) {
               <a>Criar Receita</a>
             </Link>
           </div>
+          <div className="card">
+            <Link href="/paginadochef">
+              <a>Minhas Receitas</a>
+            </Link>
+          </div>
         </main>
 
         <footer>
