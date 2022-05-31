@@ -2,13 +2,13 @@ import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import Link from "next/link";
 import LoginBtn from "../components/loginbtn";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 
 export default function Home({ isConnected }) {
   const { data: session, status } = useSession();
 
   if (session) {
-    console.log(session.user.email);
+    console.log(session);
     return (
       <div className="container">
         <LoginBtn />

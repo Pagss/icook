@@ -1,22 +1,29 @@
-import { useSession, signIn } from "next-auth/react";
+import { useSession, signIn, getSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { cheflink } from "../lib/cheflink";
 
-export default function PaginaDoChef() {
+export default function PaginaDoChef({ chefs }) {
   const { data: session, status } = useSession();
 
   if (session) {
-    const chef = session.user.name;
+    console.log(chefs);
 
-    // const getData = async () => {
-    //   let recps = await fetch("/api/recipebook");
-    //   return await recps;
-    // };
-    // console.log(recps);
-    const lista = console.log("oi");
+    const userEm = session.user.email;
+    console.log(userEm);
 
+    const chefArr = chefs.filter((chef) => chef.email === userEm);
+    console.log(chefArr);
+    const id = chefArr[0]._id;
+    console.log("log do chefID");
+    // console.log(chefId);
+    // const id = chefId._id;
+    console.log(id);
+    const router = useRouter();
+
+    router.push(`/chef/${id}`);
     return (
       <div>
-        <div>Receitas do {chef}</div>
-        <ul></ul>
+        <div>...Loading</div>
       </div>
     );
   }
@@ -28,4 +35,12 @@ export default function PaginaDoChef() {
       </>
     );
   }
+}
+
+export async function getStaticProps() {
+  const chefJsonRaw = await fetch("http://localhost:3000/api/chefapi");
+  const chefJson = await chefJsonRaw.json();
+  const chefs = JSON.parse(JSON.stringify(chefJson));
+
+  return { props: { chefs } };
 }

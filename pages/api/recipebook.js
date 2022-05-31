@@ -2,25 +2,27 @@ import { getSession } from "next-auth/react";
 import clientPromise from "../../lib/mongodb";
 
 export default async function handler(req, res) {
-  const body = req.body;
-  console.log("body: ", body);
-
   const session = await getSession({ req });
-  const user = session.user.email;
 
-  const client = await clientPromise;
-  const db = client.db("icook");
-  const dataArr = await db
-    .collection("users")
-    .find("recipes")
-    .filter({ email: user })
-    .toArray();
+  if (session) {
+    const user = session.user.email;
 
-  const data = dataArr[0];
-  const receitas = data.recipes;
+    const client = await clientPromise;
+    const db = client.db("icook");
+    const dataArr = await db
+      .collection("users")
+      .find({ email: user })
+      .project({ recipes: 1 })
+      .toArray();
 
-  console.log(session.user.email);
-  console.log(receitas);
+    // const data = dataArr[0];
+    // const receitas = data.recipes;
+    // .project resolveu, trazendo "_id" junto
 
-  res.status(200).json(receitas);
+    console.log(dataArr);
+
+    res.status(200).json(dataArr);
+  } else {
+    console.log("fora de sessao");
+  }
 }
