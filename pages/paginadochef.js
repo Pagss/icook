@@ -20,7 +20,7 @@ export default function PaginaDoChef({ chefs }) {
     // console.log(id);
     const router = useRouter();
 
-    router.push(`${process.env.NEXTAUTH_URL}/chef/${id}`);
+    router.push(`/chef/${id}`);
     return (
       <div>
         <div>...Loading</div>
