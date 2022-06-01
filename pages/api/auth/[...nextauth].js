@@ -14,7 +14,7 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
-  secret: process.env.SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   // events: {
   //   async signIn(message) {
   //     const client = await clientPromise;
