@@ -2,7 +2,7 @@ import clientPromise from "../../lib/mongodb";
 
 export default async function handler(req, res) {
   const body = req.body;
-  console.log("body: ", body);
+  // console.log("body: ", body);
 
   if (!body.chef) {
     // Sends a HTTP bad request error code

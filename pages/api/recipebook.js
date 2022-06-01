@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     // const receitas = data.recipes;
     // .project resolveu, trazendo "_id" junto
 
-    console.log(dataArr);
+    // console.log(dataArr);
 
     res.status(200).json(dataArr);
   } else {

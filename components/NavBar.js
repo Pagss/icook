@@ -18,6 +18,11 @@ export default function NavBar() {
           </Link>
         </div>
         <div>
+          <Link href="/novareceita">
+            <a>Criar Receita</a>
+          </Link>
+        </div>
+        <div>
           <button onClick={signOut}>Sair</button>
         </div>
       </nav>
