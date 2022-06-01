@@ -67,11 +67,11 @@ export default function Chef(props) {
           })}
         </ul>
         <h3>Modo de Fazer</h3>
-        <ul>
+        <ol>
           {chef.recipes[receitaNum].modo.map((modo, key) => {
             return <li key={key}>{modo}</li>;
           })}
-        </ul>
+        </ol>
       </div>
     );
   }

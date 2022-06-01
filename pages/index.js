@@ -6,7 +6,7 @@ import { useSession, signIn } from "next-auth/react";
 
 export default function Home() {
   const { data: session, status } = useSession();
-
+  const beta = "(beta)";
   if (session) {
     // console.log(session);
     return (
@@ -18,7 +18,13 @@ export default function Home() {
         </Head>
 
         <main>
-          <h1 className="title">iCook</h1>
+          <h1 className="title">iCook {beta}</h1>
+          <h4>Próximos Upgrades</h4>
+          <ul>
+            <li>edição no formulário de receitas novas</li>
+            <li>copiar receitas de outros usuários</li>
+            <li>customização visual do site</li>
+          </ul>
 
           <div className="card">
             <Link href="/novareceita">
