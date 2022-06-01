@@ -2,7 +2,7 @@ import { useSession, signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { cheflink } from "../lib/cheflink";
 
-export default function PaginaDoChef({ chefs }) {
+export default function PaginaDoChef(props) {
   const { data: session, status } = useSession();
 
   if (session) {
@@ -11,7 +11,7 @@ export default function PaginaDoChef({ chefs }) {
     const userEm = session.user.email;
     // console.log(userEm);
 
-    const chefArr = chefs.filter((chef) => chef.email === userEm);
+    const chefArr = props.chefs.filter((chef) => chef.email === userEm);
     // console.log(chefArr);
     const id = chefArr[0]._id;
     // console.log("log do chefID");
@@ -20,7 +20,7 @@ export default function PaginaDoChef({ chefs }) {
     // console.log(id);
     const router = useRouter();
 
-    router.push(`/chef/${id}`);
+    const teste = router.push(`${props.url}/chef/${id}`);
     return (
       <div>
         <div>...Loading</div>
@@ -38,9 +38,10 @@ export default function PaginaDoChef({ chefs }) {
 }
 
 export async function getStaticProps() {
+  const url = process.env.NEXTAUTH_URL;
   const chefJsonRaw = await fetch(`${process.env.NEXTAUTH_URL}/api/chefapi`);
   const chefJson = await chefJsonRaw.json();
   const chefs = JSON.parse(JSON.stringify(chefJson));
 
-  return { props: { chefs } };
+  return { props: { chefs, url } };
 }

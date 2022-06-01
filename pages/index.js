@@ -9,6 +9,7 @@ export default function Home() {
   const beta = "(beta)";
   if (session) {
     // console.log(session);
+
     return (
       <div className="container">
         <LoginBtn />
