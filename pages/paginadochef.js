@@ -38,7 +38,7 @@ export default function PaginaDoChef({ chefs }) {
 }
 
 export async function getStaticProps() {
-  const chefJsonRaw = await fetch("http://localhost:3000/api/chefapi");
+  const chefJsonRaw = await fetch(`${process.env.NEXTAUTH_URL}/api/chefapi`);
   const chefJson = await chefJsonRaw.json();
   const chefs = JSON.parse(JSON.stringify(chefJson));
 
