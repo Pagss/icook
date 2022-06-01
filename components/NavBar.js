@@ -14,7 +14,7 @@ export default function NavBar() {
         </div>
         <div>
           <Link href="/paginadochef">
-            <a>Chef</a>
+            <a>Livro de Receitas</a>
           </Link>
         </div>
         <div>

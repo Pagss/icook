@@ -6,18 +6,18 @@ export default function PaginaDoChef({ chefs }) {
   const { data: session, status } = useSession();
 
   if (session) {
-    console.log(chefs);
+    // console.log(chefs);
 
     const userEm = session.user.email;
-    console.log(userEm);
+    // console.log(userEm);
 
     const chefArr = chefs.filter((chef) => chef.email === userEm);
-    console.log(chefArr);
+    // console.log(chefArr);
     const id = chefArr[0]._id;
-    console.log("log do chefID");
+    // console.log("log do chefID");
     // console.log(chefId);
     // const id = chefId._id;
-    console.log(id);
+    // console.log(id);
     const router = useRouter();
 
     router.push(`/chef/${id}`);

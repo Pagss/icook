@@ -4,11 +4,11 @@ import Link from "next/link";
 import LoginBtn from "../components/loginbtn";
 import { useSession, signIn } from "next-auth/react";
 
-export default function Home({ isConnected }) {
+export default function Home() {
   const { data: session, status } = useSession();
 
   if (session) {
-    console.log(session);
+    // console.log(session);
     return (
       <div className="container">
         <LoginBtn />
@@ -19,15 +19,6 @@ export default function Home({ isConnected }) {
 
         <main>
           <h1 className="title">iCook</h1>
-
-          {isConnected ? (
-            <h2 className="subtitle">You are connected to MongoDB</h2>
-          ) : (
-            <h2 className="subtitle">
-              You are NOT connected to MongoDB. Check the <code>README.md</code>{" "}
-              for instructions.
-            </h2>
-          )}
 
           <div className="card">
             <Link href="/novareceita">

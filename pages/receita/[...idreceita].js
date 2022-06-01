@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const db = client.db("icook");
   const dataRaw = await db.collection("users").find().toArray();
   const data = JSON.parse(JSON.stringify(dataRaw));
-  console.log(data);
+  // console.log(data);
   const paths = data.map((doc) => {
     return {
       params: {
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
       },
     };
   });
-  console.log(paths);
+  // console.log(paths);
   return {
     paths,
     fallback: "blocking",
@@ -24,13 +24,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log("oi props [id]");
-  console.log(params);
+  // console.log("oi props [id]");
+  // console.log(params);
   const user = params.idreceita[0];
-  console.log(user);
+  // console.log(user);
 
   const id = params.idreceita[1];
-  console.log(id);
+  // console.log(id);
 
   const client = await clientPromise;
   const db = client.db("icook");
@@ -49,8 +49,8 @@ export default function Chef(props) {
   //console.log(props);
   const router = useRouter();
   const chef = props.chef;
-  console.log("ola do comp");
-  console.log(chef);
+  // console.log("ola do comp");
+  // console.log(chef);
   const receitaNum = props.id;
 
   return (
