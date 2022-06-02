@@ -29,8 +29,11 @@ export async function getStaticProps({ params }) {
   // console.log(params);
   const user = params.idreceita[0];
   // console.log(user);
-
-  const id = params.idreceita[1];
+  if (!params.idreceita[1]) {
+    const id = null;
+  } else {
+    const id = params.idreceita[1];
+  }
   // console.log(id);
 
   const client = await clientPromise;
