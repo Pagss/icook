@@ -8,7 +8,7 @@ export default function Home() {
   const { data: session, status } = useSession();
   const beta = "(beta)";
   if (session) {
-    // console.log(session);
+    console.log(session.user._id);
 
     return (
       <div className="container">
@@ -33,7 +33,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="card">
-            <Link href="/paginadochef">
+            <Link href={`/chef/${session.user._id}`}>
               <a>Minhas Receitas</a>
             </Link>
           </div>

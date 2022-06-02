@@ -14,34 +14,41 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
-  secret: process.env.NEXTAUTH_SECRET,
-  // events: {
-  //   async signIn(message) {
-  //     const client = await clientPromise;
-  //     const db = client.db("icook");
-  //     const user = message.user;
-  //     if (message.isNewUser) {
-  //       const newUser = await db.collection("chef").insertOne({ user });
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user._id = user.id;
+      return session;
+    },
 
-  //       // function createNewUser() {
-  //       //   const user = message.user;
+    secret: process.env.NEXTAUTH_SECRET,
+    // events: {
+    //   async signIn(message) {
+    //     const client = await clientPromise;
+    //     const db = client.db("icook");
+    //     const user = message.user;
+    //     if (message.isNewUser) {
+    //       const newUser = await db.collection("chef").insertOne({ user });
 
-  //       //   const JSONuser = JSON.stringify(user);
-  //       //   const endpoint = "/api/createchef";
+    //       // function createNewUser() {
+    //       //   const user = message.user;
 
-  //       //   const options = {
-  //       //     method: "POST",
+    //       //   const JSONuser = JSON.stringify(user);
+    //       //   const endpoint = "/api/createchef";
 
-  //       //     headers: {
-  //       //       "Content-Type": "application/json",
-  //       //     },
+    //       //   const options = {
+    //       //     method: "POST",
 
-  //       //     body: JSONuser,
-  //       //   };
-  //       //   const newUser = fetch(endpoint, options);}
-  //     } else {
-  //       console.log("já existe");
-  //     }
-  //   },
-  // },
+    //       //     headers: {
+    //       //       "Content-Type": "application/json",
+    //       //     },
+
+    //       //     body: JSONuser,
+    //       //   };
+    //       //   const newUser = fetch(endpoint, options);}
+    //     } else {
+    //       console.log("já existe");
+    //     }
+    //   },
+    // },
+  },
 });

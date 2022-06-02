@@ -20,7 +20,7 @@ export async function getStaticPaths() {
   // console.log(paths);
   return {
     paths,
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -55,21 +55,29 @@ export default function Chef(props) {
     return (
       <div>
         <h1>{chef.name}</h1>
-        <ul>
-          {chef.recipes.map((receita, index) => {
-            return (
-              <li key={receita}>
-                <Link
-                  href={`../receita/${chef._id}/${chef.recipes.indexOf(
-                    receita
-                  )}`}
-                >
-                  <a>{receita.title}</a>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div>
+          {!chef.recipes ? (
+            <Link href={"../novareceita"}>
+              <a>Crie sua primeira receita!</a>
+            </Link>
+          ) : (
+            <ul>
+              {chef.recipes.map((receita, index) => {
+                return (
+                  <li key={receita}>
+                    <Link
+                      href={`../receita/${chef._id}/${chef.recipes.indexOf(
+                        receita
+                      )}`}
+                    >
+                      <a>{receita.title}</a>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
       </div>
     );
   }

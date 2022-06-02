@@ -13,7 +13,7 @@ export default function NavBar() {
           </Link>
         </div>
         <div>
-          <Link href="/paginadochef">
+          <Link href={`/chef/${session.user._id}`}>
             <a>Livro de Receitas</a>
           </Link>
         </div>
