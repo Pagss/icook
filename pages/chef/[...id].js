@@ -40,6 +40,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { chef },
+    revalidate: 1,
   };
 }
 
