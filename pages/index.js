@@ -8,7 +8,7 @@ export default function Home() {
   const { data: session, status } = useSession();
   const beta = "(beta)";
   if (session) {
-    console.log(session.user._id);
+    // console.log(session.user._id);
 
     return (
       <div className="container">

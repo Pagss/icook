@@ -26,14 +26,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // console.log("oi props [id]");
+  let id = null;
   // console.log(params);
   const user = params.idreceita[0];
   // console.log(user);
-  if (!params.idreceita[1]) {
-    const id = null;
-  } else {
-    const id = params.idreceita[1];
+  if (params.idreceita[1]) {
+    id = params.idreceita[1];
   }
+
   // console.log(id);
 
   const client = await clientPromise;
@@ -49,34 +49,39 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Chef(props) {
+export default function Receitas(props) {
   const { data: session, status } = useSession();
 
   //console.log(props);
-  const router = useRouter();
+  // const router = useRouter();
   const chef = props.chef;
   // console.log("ola do comp");
   // console.log(chef);
   const receitaNum = props.id;
+  // console.log(receitaNum);
   if (session) {
-    return (
-      <div>
-        <h1>{chef.name}</h1>
-        <h2>{chef.recipes[receitaNum].title}</h2>
-        <h3>Ingredientes</h3>
-        <ul>
-          {chef.recipes[receitaNum].ingredientes.map((ingrediente, key) => {
-            return <li key={key}>{ingrediente}</li>;
-          })}
-        </ul>
-        <h3>Modo de Fazer</h3>
-        <ol>
-          {chef.recipes[receitaNum].modo.map((modo, key) => {
-            return <li key={key}>{modo}</li>;
-          })}
-        </ol>
-      </div>
-    );
+    if (receitaNum === null) {
+      return <div>Crie essa receita antes</div>;
+    } else {
+      return (
+        <div>
+          <h1>{chef.name}</h1>
+          <h2>{chef.recipes[receitaNum].title}</h2>
+          <h3>Ingredientes</h3>
+          <ul>
+            {chef.recipes[receitaNum].ingredientes.map((ingrediente, key) => {
+              return <li key={key}>{ingrediente}</li>;
+            })}
+          </ul>
+          <h3>Modo de Fazer</h3>
+          <ol>
+            {chef.recipes[receitaNum].modo.map((modo, key) => {
+              return <li key={key}>{modo}</li>;
+            })}
+          </ol>
+        </div>
+      );
+    }
   }
   {
     return (
