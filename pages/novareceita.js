@@ -168,6 +168,7 @@ export default function Tentativa() {
                 id="titulo"
                 name="titulo"
                 type="text"
+                pattern="[a-z]"
                 placeholder="Título da Receita"
               />
               ;<button type="submit">Adicionar Título</button>
@@ -190,8 +191,14 @@ export default function Tentativa() {
               return (
                 <form key={c} ref={formIng} onSubmit={handleIngSubmit}>
                   <label htmlFor="ing"></label>
-                  <input id="ing" name="ing" type="text"></input>;
-                  <input id="qtd" type="number" min="0"></input>
+                  <input
+                    id="ing"
+                    name="ing"
+                    type="text"
+                    pattern="[a-z]"
+                  ></input>
+                  ;
+                  <input id="qtd" type="number" pattern="[0-9]" min="0"></input>
                   <select id="metrica">
                     <option value="unidades">unidades</option>
                     <option value="g">g</option>
@@ -221,8 +228,13 @@ export default function Tentativa() {
               return (
                 <form key={c} ref={formMod} onSubmit={handleModSubmit}>
                   <label htmlFor="modos"></label>
-                  <input id="modos" name="modos" type="text"></input>;
-                  <button type="submit">Adicionar</button>
+                  <input
+                    id="modos"
+                    name="modos"
+                    type="text"
+                    pattern="[a-z0-9]"
+                  ></input>
+                  ;<button type="submit">Adicionar</button>
                 </form>
               );
             })}
