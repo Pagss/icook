@@ -16,6 +16,10 @@ export default function Home() {
         <Head>
           <title>iCook</title>
           <link rel="icon" href="/favicon.ico" />
+          <meta
+            name="google-site-verification"
+            content="6YPdmXQ3r6a4v1o-ZrI-tlfg-HgoZg3oXfe2WUBmLbg"
+          />
         </Head>
 
         <main>
@@ -204,6 +208,14 @@ export default function Home() {
   }
   return (
     <>
+      <Head>
+        <title>iCook</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="google-site-verification"
+          content="6YPdmXQ3r6a4v1o-ZrI-tlfg-HgoZg3oXfe2WUBmLbg"
+        />
+      </Head>
       <main>
         <h1 className="title">iCook</h1>
         <div className="card">
