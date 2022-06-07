@@ -15,7 +15,7 @@ export default function Home() {
         <LoginBtn />
         <Head>
           <title>iCook</title>
-          <link rel="icon" href="/favicon.ico" />
+
           <meta
             name="google-site-verification"
             content="6YPdmXQ3r6a4v1o-ZrI-tlfg-HgoZg3oXfe2WUBmLbg"
@@ -43,16 +43,7 @@ export default function Home() {
           </div>
         </main>
 
-        <footer>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{" "}
-            <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-          </a>
-        </footer>
+        <footer></footer>
 
         <style jsx>{`
           .container {
@@ -210,7 +201,7 @@ export default function Home() {
     <>
       <Head>
         <title>iCook</title>
-        <link rel="icon" href="/favicon.ico" />
+
         <meta
           name="google-site-verification"
           content="6YPdmXQ3r6a4v1o-ZrI-tlfg-HgoZg3oXfe2WUBmLbg"
