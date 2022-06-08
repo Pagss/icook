@@ -32,9 +32,9 @@ export async function getStaticProps({ params }) {
 
   const client = await clientPromise;
   const db = client.db("icook");
-  const chefRaw = await db
-    .collection("users")
-    .findOne(ObjectId(user), { email: 0, image: 0, emailVerified: 0 });
+  const chefRaw = await db.collection("users").findOne(ObjectId(user), {
+    projection: { email: 0, image: 0, emailVerified: 0 },
+  });
 
   // console.log(chefRaw);
 
