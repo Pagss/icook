@@ -46,7 +46,7 @@ export async function getStaticProps({ params }) {
   //   recipes: chefTotal.recipes,
   // };
 
-  console.log(chef);
+  // console.log(chef);
   // *passa o objeto inteiro pro script !!*
   return {
     props: { chef },
