@@ -32,12 +32,22 @@ export async function getStaticProps({ params }) {
 
   const client = await clientPromise;
   const db = client.db("icook");
-  const chefRaw = await db.collection("users").findOne(ObjectId(user));
+  const chefRaw = await db
+    .collection("users")
+    .findOne(ObjectId(user), { email: 0, image: 0, emailVerified: 0 });
 
   // console.log(chefRaw);
 
   const chef = JSON.parse(JSON.stringify(chefRaw));
+  // const chef = {
+  //   _id: chefTotal._id,
+  //   name: chefTotal.name,
+  //   email: chefTotal.email,
+  //   recipes: chefTotal.recipes,
+  // };
 
+  console.log(chef);
+  // *passa o objeto inteiro pro script !!*
   return {
     props: { chef },
     revalidate: 1,
