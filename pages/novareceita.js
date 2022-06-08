@@ -152,7 +152,7 @@ export default function Tentativa() {
     const result = await response.json();
     console.log(result.data);
 
-    router.push("/");
+    router.push(`/chef/${session.user._id}`);
   };
   //Ate aqui
   if (session) {
@@ -168,7 +168,7 @@ export default function Tentativa() {
                 id="titulo"
                 name="titulo"
                 type="text"
-                pattern="[a-z]"
+                pattern="[À-ža-zA-Z\s]+"
                 placeholder="Título da Receita"
               />
               ;<button type="submit">Adicionar Título</button>
@@ -195,7 +195,7 @@ export default function Tentativa() {
                     id="ing"
                     name="ing"
                     type="text"
-                    pattern="[a-z]"
+                    pattern="[À-ža-zA-Z\s]+"
                   ></input>
                   ;
                   <input id="qtd" type="number" pattern="[0-9]" min="0"></input>
@@ -232,7 +232,7 @@ export default function Tentativa() {
                     id="modos"
                     name="modos"
                     type="text"
-                    pattern="[a-z0-9]"
+                    pattern="[À-ža-zA-Z\s0-9,.]+"
                   ></input>
                   ;<button type="submit">Adicionar</button>
                 </form>
