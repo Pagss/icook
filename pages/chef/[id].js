@@ -4,30 +4,10 @@ import { useRouter } from "next/router";
 import { ObjectId } from "mongodb";
 import { useSession, signIn, signOut } from "next-auth/react";
 
-export async function getStaticPaths() {
-  const client = await clientPromise;
-  const db = client.db("icook");
-  const dataRaw = await db.collection("users").find().toArray();
-  const data = JSON.parse(JSON.stringify(dataRaw));
-  // console.log(data);
-  const paths = data.map((doc) => {
-    return {
-      params: {
-        id: [doc._id],
-      },
-    };
-  });
-  // console.log(paths);
-  return {
-    paths,
-    fallback: "blocking",
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ query }) {
   // console.log("oi props [id]");
   // console.log(params);
-  const user = params.id[0];
+  const user = query.id;
   // console.log(user);
 
   const client = await clientPromise;
@@ -50,7 +30,6 @@ export async function getStaticProps({ params }) {
   // *passa o objeto inteiro pro script !!*
   return {
     props: { chef },
-    revalidate: 1,
   };
 }
 
