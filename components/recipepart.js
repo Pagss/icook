@@ -8,7 +8,7 @@ export default function RecipePart() {
 
   function handleClick() {
     setCount(count + 1);
-    console.log(count);
+    //console.log(count);
   }
 
   const handleSubmit = async (event) => {
@@ -35,11 +35,11 @@ export default function RecipePart() {
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result.data);
+    //console.log(result.data);
 
     if (result.data != null)
       setListaDeIngrediente([...listaDeIngrediente, result.data]);
-    console.log(listaDeIngrediente);
+    //console.log(listaDeIngrediente);
     form.current.remove();
   };
 

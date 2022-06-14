@@ -8,7 +8,7 @@ export default function RecipeDos() {
 
   function handleClick() {
     setCount(count + 1);
-    console.log(count);
+    //console.log(count);
   }
 
   const handleSubmit = async (event) => {
@@ -33,11 +33,11 @@ export default function RecipeDos() {
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result.data);
+    //console.log(result.data);
 
     if (result.data != null)
       setListaDeDirecoes([...listaDeDirecoes, result.data]);
-    console.log(listaDeDirecoes);
+    //console.log(listaDeDirecoes);
     form.current.remove();
   };
 

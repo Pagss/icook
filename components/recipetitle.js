@@ -28,10 +28,10 @@ export default function RecipeTitle() {
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result.data);
+    //console.log(result.data);
 
     if (result.data != null) setTitle(result.data);
-    console.log(title);
+    //console.log(title);
     form.current.remove();
   };
 

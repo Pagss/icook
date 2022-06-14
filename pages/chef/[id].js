@@ -41,6 +41,40 @@ export default function Chef(props) {
   const chef = props.chef;
   // console.log("ola do comp");
   // console.log(chef);
+
+  const delRecipe = async (event) => {
+    const data = { index: event.target.id, chef: chef._id };
+    // console.log(data);
+
+    const JSONdata = JSON.stringify(data);
+
+    const endpoint = "/api/delRecipeapi";
+
+    const options = {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSONdata,
+    };
+
+    const user = session.user._id;
+    const recipeChefId = props.chef._id;
+
+    if (user === recipeChefId) {
+      const response = await fetch(endpoint, options);
+
+      const result = await response.json();
+
+      router.reload();
+      // console.log(result);
+    } else {
+      alert("Não pode fazer isso!");
+    }
+  };
+
   if (session) {
     return (
       <div>
@@ -54,7 +88,7 @@ export default function Chef(props) {
             <ul>
               {chef.recipes.map((receita, index) => {
                 return (
-                  <li key={receita}>
+                  <li key={index}>
                     <Link
                       href={`../receita/${chef._id}/${chef.recipes.indexOf(
                         receita
@@ -62,6 +96,13 @@ export default function Chef(props) {
                     >
                       <a>{receita.title}</a>
                     </Link>
+                    {session.user._id === chef._id ? (
+                      <button id={index} onClick={delRecipe}>
+                        x
+                      </button>
+                    ) : (
+                      <></>
+                    )}
                   </li>
                 );
               })}

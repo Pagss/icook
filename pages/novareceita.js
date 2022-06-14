@@ -35,10 +35,10 @@ export default function Tentativa() {
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result.data);
+    //console.log(result.data);
 
     if (result.data != null) setTitle(result.data);
-    console.log(title);
+    //console.log(title);
 
     formTit.current.remove();
   };
@@ -48,7 +48,7 @@ export default function Tentativa() {
 
   function handleIngClick() {
     setCountIng(countIng + 1);
-    console.log(countIng);
+    // console.log(countIng);
   }
 
   const handleIngSubmit = async (event) => {
@@ -75,11 +75,11 @@ export default function Tentativa() {
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result.data);
+    //console.log(result.data);
 
     if (result.data != null)
       setListaDeIngrediente([...listaDeIngrediente, result.data]);
-    console.log(listaDeIngrediente);
+    //console.log(listaDeIngrediente);
     const ingData = { ...listaDeIngrediente };
     formIng.current.remove();
   };
@@ -88,7 +88,7 @@ export default function Tentativa() {
 
   function handleModClick() {
     setCountMod(countMod + 1);
-    console.log(countMod);
+    //console.log(countMod);
   }
 
   const handleModSubmit = async (event) => {
@@ -113,11 +113,11 @@ export default function Tentativa() {
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result.data);
+    //console.log(result.data);
 
     if (result.data != null)
       setListaDeDirecoes([...listaDeDirecoes, result.data]);
-    console.log(listaDeDirecoes);
+    //console.log(listaDeDirecoes);
     const modData = { ...listaDeDirecoes };
     formMod.current.remove();
   };
@@ -150,7 +150,7 @@ export default function Tentativa() {
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result.data);
+    //console.log(result.data);
 
     router.push(`/chef/${session.user._id}`);
   };
