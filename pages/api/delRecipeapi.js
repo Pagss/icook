@@ -16,16 +16,16 @@ export default async function handler(req, res) {
   const client = await clientPromise;
   const db = client.db("icook");
 
-  db.collection("users").updateOne(
-    { _id: ObjectId(id) },
-    { $unset: { [delIndex]: 1 } }
-  );
+  const tira = await db
+    .collection("users")
+    .updateOne({ _id: ObjectId(id) }, { $unset: { [delIndex]: 1 } });
 
-  db.collection("users").updateOne(
-    { _id: ObjectId(id) },
-    { $pull: { recipes: null } }
-  );
+  const puxa = await db
+    .collection("users")
+    .updateOne({ _id: ObjectId(id) }, { $pull: { recipes: null } });
 
+  const xuxa1 = await tira;
+  const xuxa2 = await puxa;
   // const tenteiJS = await db
   //   .collection("users")
   //   .find({ _id: ObjectId(id) }, { project: { recipes: 1 } })
