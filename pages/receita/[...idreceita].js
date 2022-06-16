@@ -46,6 +46,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { chef, id },
+    revalidate: 1,
   };
 }
 
