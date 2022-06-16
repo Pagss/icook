@@ -11,17 +11,28 @@ export default async function handler(req, res) {
   }
   const index = body.index;
   const id = body.chef;
+  const delIndex = `recipes.${index}`;
 
   const client = await clientPromise;
   const db = client.db("icook");
 
-  const tenteiJS = await db
-    .collection("users")
-    .find({ _id: ObjectId(id) }, { project: { recipes: 1 } })
-    .toArray();
-  // console.log(tenteiJS);
+  db.collection("users").updateOne(
+    { _id: ObjectId(id) },
+    { $unset: { [delIndex]: 1 } }
+  );
 
-  const praDel = tenteiJS[0].recipes[parseInt(index)].title.toString();
+  db.collection("users").updateOne(
+    { _id: ObjectId(id) },
+    { $pull: { recipes: null } }
+  );
+
+  // const tenteiJS = await db
+  //   .collection("users")
+  //   .find({ _id: ObjectId(id) }, { project: { recipes: 1 } })
+  //   .toArray();
+  // // console.log(tenteiJS);
+
+  // const praDel = tenteiJS[0].recipes[parseInt(index)].title.toString();
 
   // console.log(praDel);
 
@@ -31,12 +42,12 @@ export default async function handler(req, res) {
   //   { arrayFilters: [{ "receita.title": praDel }] }
   // );
 
-  db.collection("users").updateOne(
-    { _id: ObjectId(id) },
-    { $pull: { recipes: { title: praDel } } }
-  );
+  // db.collection("users").updateOne(
+  //   { _id: ObjectId(id) },
+  //   { $pull: { recipes: { title: praDel } } }
+  // );
 
   // Found the name.
   // Sends a HTTP success code
-  res.status(200).json({ data: praDel });
+  res.status(200).json({ data: "foi" });
 }
